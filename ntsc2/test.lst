@@ -1,0 +1,1494 @@
+GAS LISTING /tmp/ccJgqQco.s 			page 1
+
+
+   1               		.file	"test.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  10               		.text
+  11               	.Ltext0:
+  87               	.global	delay_ms
+  89               	delay_ms:
+  90               		.stabd	46,0,0
+   1:test.c        **** #include <avr/io.h>
+   2:test.c        **** #include <avr/interrupt.h>
+   3:test.c        **** #include <avr/sleep.h>
+   4:test.c        **** #include <avr/pgmspace.h>
+   5:test.c        **** #include <util/delay.h>
+   6:test.c        **** 
+   7:test.c        **** void delay_ms(uint32_t time) {
+  92               	.LM0:
+  93               	.LFBB1:
+  94               	/* prologue: function */
+  95               	/* frame size = 0 */
+  97               	.LM1:
+  98 0000 20E0      		ldi r18,lo8(0)
+  99 0002 30E0      		ldi r19,hi8(0)
+ 100 0004 40E0      		ldi r20,hlo8(0)
+ 101 0006 50E0      		ldi r21,hhi8(0)
+ 102               	.LBB82:
+ 103               	.LBB83:
+ 104               	.LBB84:
+ 105               	.LBB85:
+ 107               	.Ltext1:
+   1:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****    Copyright (c) 2007 Joerg Wunsch
+   3:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****    All rights reserved.
+   4:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+   5:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****    Redistribution and use in source and binary forms, with or without
+   6:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****    modification, are permitted provided that the following conditions are met:
+   7:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+   8:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****    * Redistributions of source code must retain the above copyright
+   9:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****      notice, this list of conditions and the following disclaimer.
+  10:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  11:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****    * Redistributions in binary form must reproduce the above copyright
+  12:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****      notice, this list of conditions and the following disclaimer in
+  13:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****      the documentation and/or other materials provided with the
+  14:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****      distribution.
+  15:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  16:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****    * Neither the name of the copyright holders nor the names of
+  17:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****      contributors may be used to endorse or promote products derived
+  18:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****      from this software without specific prior written permission.
+  19:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  20:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  21:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  22:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  23:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  24:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+GAS LISTING /tmp/ccJgqQco.s 			page 2
+
+
+  25:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  26:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  27:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  28:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  29:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  30:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  31:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  32:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** /* $Id: delay_basic.h,v 1.1 2007/05/13 21:23:20 joerg_wunsch Exp $ */
+  33:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  34:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** #ifndef _UTIL_DELAY_BASIC_H_
+  35:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** #define _UTIL_DELAY_BASIC_H_ 1
+  36:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  37:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** #include <inttypes.h>
+  38:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  39:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** /** \file */
+  40:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** /** \defgroup util_delay_basic <util/delay_basic.h>: Basic busy-wait delay loops
+  41:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     \code
+  42:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     #include <util/delay_basic.h>
+  43:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     \endcode
+  44:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  45:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     The functions in this header file implement simple delay loops
+  46:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     that perform a busy-waiting.  They are typically used to
+  47:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     facilitate short delays in the program execution.  They are
+  48:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     implemented as count-down loops with a well-known CPU cycle
+  49:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     count per loop iteration.  As such, no other processing can
+  50:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     occur simultaneously.  It should be kept in mind that the
+  51:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     functions described here do not disable interrupts.
+  52:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  53:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     In general, for long delays, the use of hardware timers is
+  54:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     much preferrable, as they free the CPU, and allow for
+  55:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     concurrent processing of other events while the timer is
+  56:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     running.  However, in particular for very short delays, the
+  57:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     overhead of setting up a hardware timer is too much compared
+  58:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     to the overall delay time.
+  59:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  60:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     Two inline functions are provided for the actual delay algorithms.
+  61:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  62:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** */
+  63:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  64:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** #if !defined(__DOXYGEN__)
+  65:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** static inline void _delay_loop_1(uint8_t __count) __attribute__((always_inline));
+  66:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** static inline void _delay_loop_2(uint16_t __count) __attribute__((always_inline));
+  67:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** #endif
+  68:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  69:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** /** \ingroup util_delay_basic
+  70:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  71:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     Delay loop using an 8-bit counter \c __count, so up to 256
+  72:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     iterations are possible.  (The value 256 would have to be passed
+  73:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     as 0.)  The loop executes three CPU cycles per iteration, not
+  74:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     including the overhead the compiler needs to setup the counter
+  75:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     register.
+  76:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  77:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     Thus, at a CPU speed of 1 MHz, delays of up to 768 microseconds
+  78:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     can be achieved.
+  79:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** */
+  80:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** void
+  81:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** _delay_loop_1(uint8_t __count)
+GAS LISTING /tmp/ccJgqQco.s 			page 3
+
+
+  82:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** {
+  83:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+  84:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 		"1: dec %0" "\n\t"
+  85:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 		"brne 1b"
+  86:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 		: "=r" (__count)
+  87:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 		: "0" (__count)
+  88:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	);
+  89:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** }
+  90:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  91:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** /** \ingroup util_delay_basic
+  92:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  93:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     Delay loop using a 16-bit counter \c __count, so up to 65536
+  94:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     iterations are possible.  (The value 65536 would have to be
+  95:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     passed as 0.)  The loop executes four CPU cycles per iteration,
+  96:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     not including the overhead the compiler requires to setup the
+  97:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     counter register pair.
+  98:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 
+  99:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     Thus, at a CPU speed of 1 MHz, delays of up to about 262.1
+ 100:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****     milliseconds can be achieved.
+ 101:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h ****  */
+ 102:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** void
+ 103:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** _delay_loop_2(uint16_t __count)
+ 104:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** {
+ 105:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 109               	.LM2:
+ 110 0008 A7EF      		ldi r26,lo8(7159)
+ 111 000a BBE1      		ldi r27,hi8(7159)
+ 112 000c 00C0      		rjmp .L2
+ 113               	.L3:
+ 114 000e FD01      		movw r30,r26
+ 115               	/* #APP */
+ 116               	 ;  105 "/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h" 1
+ 117 0010 3197      		1: sbiw r30,1
+ 118 0012 01F4      		brne 1b
+ 119               	 ;  0 "" 2
+ 120               	/* #NOAPP */
+ 121               	.LBE85:
+ 122               	.LBE84:
+ 123               	.LBE83:
+ 124               	.LBE82:
+ 126               	.Ltext2:
+   8:test.c        ****   uint32_t i;
+   9:test.c        ****   for (i = 0; i < time; i++) {
+ 128               	.LM3:
+ 129 0014 2F5F      		subi r18,lo8(-(1))
+ 130 0016 3F4F      		sbci r19,hi8(-(1))
+ 131 0018 4F4F      		sbci r20,hlo8(-(1))
+ 132 001a 5F4F      		sbci r21,hhi8(-(1))
+ 133               	.L2:
+ 134 001c 2617      		cp r18,r22
+ 135 001e 3707      		cpc r19,r23
+ 136 0020 4807      		cpc r20,r24
+ 137 0022 5907      		cpc r21,r25
+ 138 0024 00F0      		brlo .L3
+ 139               	/* epilogue start */
+  10:test.c        ****     _delay_ms(1);
+  11:test.c        ****   }
+GAS LISTING /tmp/ccJgqQco.s 			page 4
+
+
+  12:test.c        **** }
+ 141               	.LM4:
+ 142 0026 0895      		ret
+ 147               	.Lscope1:
+ 149               		.stabd	78,0,0
+ 151               	.global	__vector_6
+ 153               	__vector_6:
+ 154               		.stabd	46,0,0
+  13:test.c        **** 
+  14:test.c        **** void SetupNTSC();
+  15:test.c        **** 
+  16:test.c        **** #define NOOP asm volatile("nop" ::)
+  17:test.c        **** 
+  18:test.c        **** volatile unsigned char cline, sline;
+  19:test.c        **** 
+  20:test.c        **** static void setup_clock( void )
+  21:test.c        **** {
+  22:test.c        **** 	/*Examine Page 33*/
+  23:test.c        **** 
+  24:test.c        **** 	CLKPR = 0x80;	/*Setup CLKPCE to be receptive*/
+  25:test.c        **** 	CLKPR = 0x00;	/*No scalar*/
+  26:test.c        **** }
+  27:test.c        **** 
+  28:test.c        **** int main( void )
+  29:test.c        **** {
+  30:test.c        **** 	cli();
+  31:test.c        **** 
+  32:test.c        **** 	PORTA = 0x00;
+  33:test.c        **** 	PORTB = 0x00;
+  34:test.c        **** 	DDRA = 0xAF;
+  35:test.c        **** 	DDRB = 0xFF;
+  36:test.c        **** 
+  37:test.c        **** 	setup_clock();
+  38:test.c        **** 
+  39:test.c        **** 
+  40:test.c        **** 	//Setup SPI for high speed output.
+  41:test.c        **** 	USICR = _BV(USIWM0) | _BV(USICS0);
+  42:test.c        **** 	TCCR0A = _BV(WGM01);
+  43:test.c        **** 	TCCR0B = _BV(CS00);
+  44:test.c        **** 	OCR0A = 0;
+  45:test.c        **** 
+  46:test.c        **** 	SetupNTSC();
+  47:test.c        **** 	sei();
+  48:test.c        **** 
+  49:test.c        **** 	while(1)
+  50:test.c        **** 	{
+  51:test.c        **** 			sleep_cpu();
+  52:test.c        **** 
+  53:test.c        **** 	}
+  54:test.c        **** 
+  55:test.c        **** 	return 0;
+  56:test.c        **** } 
+  57:test.c        **** 
+  58:test.c        **** #define BLACK_LEVEL 0x81
+  59:test.c        **** #define BLANK_LEVEL 0x80
+  60:test.c        **** #define SYNC_LEVEL  0x00
+  61:test.c        **** #define WHITE_LEVEL 0xFF
+GAS LISTING /tmp/ccJgqQco.s 			page 5
+
+
+  62:test.c        **** #define GREY_LEVEL  0xFF
+  63:test.c        **** 
+  64:test.c        **** #define NTSC_PORT   PORTA
+  65:test.c        **** #define NTSC_DDR    DDRA
+  66:test.c        **** //#define SPI_DDR     DDRB
+  67:test.c        **** //#define SPI_PORT    PORTB
+  68:test.c        **** #define SPI_MISO    4
+  69:test.c        **** #define SPI_MOSI    3
+  70:test.c        **** #define SPI_SCK     5
+  71:test.c        **** 
+  72:test.c        **** #define NT_NOOP asm volatile("nop" ::)
+  73:test.c        **** 
+  74:test.c        **** 
+  75:test.c        **** 
+  76:test.c        **** //Triggered on new line
+  77:test.c        **** ISR(TIM1_COMPA_vect)
+  78:test.c        **** {
+ 156               	.LM5:
+ 157               	.LFBB2:
+ 158 0028 1F92      		push __zero_reg__
+ 159 002a 0F92      		push r0
+ 160 002c 0FB6      		in r0,__SREG__
+ 161 002e 0F92      		push r0
+ 162 0030 1124      		clr __zero_reg__
+ 163 0032 8F93      		push r24
+ 164 0034 9F93      		push r25
+ 165               	/* prologue: Signal */
+ 166               	/* frame size = 0 */
+  79:test.c        **** 	NTSC_PORT = SYNC_LEVEL;
+ 168               	.LM6:
+ 169 0036 1BBA      		out 59-32,__zero_reg__
+  80:test.c        **** 
+  81:test.c        **** 	if( cline )
+ 171               	.LM7:
+ 172 0038 8091 0000 		lds r24,cline
+ 173 003c 8823      		tst r24
+ 174 003e 01F0      		breq .L6
+  82:test.c        **** 	{
+  83:test.c        **** 		cline++;
+ 176               	.LM8:
+ 177 0040 8091 0000 		lds r24,cline
+ 178 0044 8F5F      		subi r24,lo8(-(1))
+ 179 0046 8093 0000 		sts cline,r24
+  84:test.c        **** 
+  85:test.c        **** 		if( cline == 7 )
+ 181               	.LM9:
+ 182 004a 8091 0000 		lds r24,cline
+ 183 004e 8730      		cpi r24,lo8(7)
+ 184 0050 01F4      		brne .L7
+  86:test.c        **** 		{
+  87:test.c        **** 			//Go high 27.1us later.
+  88:test.c        **** 			OCR1B = 774;  //was 776
+ 186               	.LM10:
+ 187 0052 86E0      		ldi r24,lo8(774)
+ 188 0054 93E0      		ldi r25,hi8(774)
+ 189 0056 00C0      		rjmp .L14
+ 190               	.L7:
+GAS LISTING /tmp/ccJgqQco.s 			page 6
+
+
+  89:test.c        **** 		}
+  90:test.c        **** 		else if( cline == 13 )
+ 192               	.LM11:
+ 193 0058 8091 0000 		lds r24,cline
+ 194 005c 8D30      		cpi r24,lo8(13)
+ 195 005e 01F0      		breq .L15
+ 196               	.L9:
+  91:test.c        **** 		{
+  92:test.c        **** 			//Go high 2.3us later
+  93:test.c        **** 			OCR1B = 64; //was 66
+  94:test.c        **** 		}
+  95:test.c        **** 		else if( cline == 19 )
+ 198               	.LM12:
+ 199 0060 8091 0000 		lds r24,cline
+ 200 0064 8331      		cpi r24,lo8(19)
+ 201 0066 01F4      		brne .L10
+  96:test.c        **** 		{
+  97:test.c        **** 			//Slow the clock back down.
+  98:test.c        **** 			OCR1A = 1832;
+ 203               	.LM13:
+ 204 0068 88E2      		ldi r24,lo8(1832)
+ 205 006a 97E0      		ldi r25,hi8(1832)
+ 206 006c 9BBD      		out (74)+1-32,r25
+ 207 006e 8ABD      		out 74-32,r24
+  99:test.c        **** 			OCR1B = 128; //Actually /should/ be 134 but we need to preempt it.
+ 209               	.LM14:
+ 210 0070 80E8      		ldi r24,lo8(128)
+ 211 0072 90E0      		ldi r25,hi8(128)
+ 212 0074 00C0      		rjmp .L14
+ 213               	.L10:
+ 100:test.c        **** 		}
+ 101:test.c        **** 		else if( cline == 29 )
+ 215               	.LM15:
+ 216 0076 8091 0000 		lds r24,cline
+ 217 007a 8D31      		cpi r24,lo8(29)
+ 218 007c 01F4      		brne .L12
+ 102:test.c        **** 		{
+ 103:test.c        **** 			cline = 0;
+ 220               	.LM16:
+ 221 007e 1092 0000 		sts cline,__zero_reg__
+ 104:test.c        **** 			sline = 1;
+ 223               	.LM17:
+ 224 0082 81E0      		ldi r24,lo8(1)
+ 225 0084 00C0      		rjmp .L13
+ 226               	.L6:
+ 105:test.c        **** 		}
+ 106:test.c        **** 	}
+ 107:test.c        **** 	else
+ 108:test.c        **** 	{
+ 109:test.c        **** 		//Handle rendering of line.
+ 110:test.c        **** 
+ 111:test.c        **** 		//Is this right?
+ 112:test.c        **** 		if( sline == 243 )
+ 228               	.LM18:
+ 229 0086 8091 0000 		lds r24,sline
+ 230 008a 833F      		cpi r24,lo8(-13)
+ 231 008c 01F4      		brne .L11
+GAS LISTING /tmp/ccJgqQco.s 			page 7
+
+
+ 113:test.c        **** 		{
+ 114:test.c        **** 			//Update CLINE and move timer into double-time.
+ 115:test.c        **** 			cline = 1;
+ 233               	.LM19:
+ 234 008e 81E0      		ldi r24,lo8(1)
+ 235 0090 8093 0000 		sts cline,r24
+ 116:test.c        **** 			sline = 0;
+ 237               	.LM20:
+ 238 0094 1092 0000 		sts sline,__zero_reg__
+ 117:test.c        **** 			OCR1A = 1832/2;  //First bunch of lines are super quick on sync.
+ 240               	.LM21:
+ 241 0098 84E9      		ldi r24,lo8(916)
+ 242 009a 93E0      		ldi r25,hi8(916)
+ 243 009c 9BBD      		out (74)+1-32,r25
+ 244 009e 8ABD      		out 74-32,r24
+ 245               	.L15:
+ 118:test.c        **** 			OCR1B = 64;	 //With upshot quickly afterward. (2.3us) (was 66)
+ 247               	.LM22:
+ 248 00a0 80E4      		ldi r24,lo8(64)
+ 249 00a2 90E0      		ldi r25,hi8(64)
+ 250               	.L14:
+ 251 00a4 99BD      		out (72)+1-32,r25
+ 252 00a6 88BD      		out 72-32,r24
+ 253 00a8 00C0      		rjmp .L12
+ 254               	.L11:
+ 119:test.c        **** 		}
+ 120:test.c        **** 		else
+ 121:test.c        **** 		{
+ 122:test.c        **** 			sline++;
+ 256               	.LM23:
+ 257 00aa 8091 0000 		lds r24,sline
+ 258 00ae 8F5F      		subi r24,lo8(-(1))
+ 259               	.L13:
+ 260 00b0 8093 0000 		sts sline,r24
+ 261               	.L12:
+ 262               	/* epilogue start */
+ 123:test.c        **** 		}
+ 124:test.c        **** 	}
+ 125:test.c        **** }
+ 264               	.LM24:
+ 265 00b4 9F91      		pop r25
+ 266 00b6 8F91      		pop r24
+ 267 00b8 0F90      		pop r0
+ 268 00ba 0FBE      		out __SREG__,r0
+ 269 00bc 0F90      		pop r0
+ 270 00be 1F90      		pop __zero_reg__
+ 271 00c0 1895      		reti
+ 273               	.Lscope2:
+ 275               		.stabd	78,0,0
+ 277               	.global	__vector_7
+ 279               	__vector_7:
+ 280               		.stabd	46,0,0
+ 126:test.c        **** 
+ 127:test.c        **** //Partway through line  (note: only called in Vblank)
+ 128:test.c        **** ISR(TIM1_COMPB_vect )
+ 129:test.c        **** {
+ 282               	.LM25:
+GAS LISTING /tmp/ccJgqQco.s 			page 8
+
+
+ 283               	.LFBB3:
+ 284 00c2 1F92      		push __zero_reg__
+ 285 00c4 0F92      		push r0
+ 286 00c6 0FB6      		in r0,__SREG__
+ 287 00c8 0F92      		push r0
+ 288 00ca 1124      		clr __zero_reg__
+ 289 00cc 2F93      		push r18
+ 290 00ce 3F93      		push r19
+ 291 00d0 4F93      		push r20
+ 292 00d2 8F93      		push r24
+ 293 00d4 9F93      		push r25
+ 294               	/* prologue: Signal */
+ 295               	/* frame size = 0 */
+ 130:test.c        **** 	unsigned char s;
+ 131:test.c        **** //	unsigned char p;
+ 132:test.c        **** 	if( cline )
+ 297               	.LM26:
+ 298 00d6 8091 0000 		lds r24,cline
+ 299 00da 8823      		tst r24
+ 300 00dc 01F0      		breq .L17
+ 133:test.c        **** 	{
+ 134:test.c        **** 		NTSC_PORT = BLANK_LEVEL;
+ 302               	.LM27:
+ 303 00de 80E8      		ldi r24,lo8(-128)
+ 304 00e0 00C0      		rjmp .L25
+ 305               	.L17:
+ 135:test.c        **** 	}
+ 136:test.c        **** 	else
+ 137:test.c        **** 	{
+ 138:test.c        **** 		NTSC_PORT = BLANK_LEVEL;
+ 307               	.LM28:
+ 308 00e2 80E8      		ldi r24,lo8(-128)
+ 309 00e4 8BBB      		out 59-32,r24
+ 310               	.LBB86:
+ 311               	.LBB87:
+ 312               	.LBB88:
+ 313               	.LBB89:
+ 315               	.Ltext3:
+  83:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 317               	.LM29:
+ 318 00e6 9AE0      		ldi r25,lo8(10)
+ 319               	/* #APP */
+ 320               	 ;  83 "/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h" 1
+ 321 00e8 9A95      		1: dec r25
+ 322 00ea 01F4      		brne 1b
+ 323               	 ;  0 "" 2
+ 324               	/* #NOAPP */
+ 325               	.LBE89:
+ 326               	.LBE88:
+ 327               	.LBE87:
+ 328               	.LBE86:
+ 330               	.Ltext4:
+ 139:test.c        **** 		_delay_us(1.1);
+ 140:test.c        **** 
+ 141:test.c        **** #define NT_NOPS		
+ 142:test.c        **** #define NT_NOPS2	NT_NOOP; 
+ 143:test.c        **** 
+GAS LISTING /tmp/ccJgqQco.s 			page 9
+
+
+ 144:test.c        **** #define CHROMA_LOOP  \
+ 145:test.c        **** 	NTSC_PORT|=_BV(5); NT_NOPS2; \
+ 146:test.c        **** 	NTSC_PORT&=~_BV(5); NT_NOPS;
+ 147:test.c        **** 
+ 148:test.c        **** //#define CHROMA_LOOPB \
+ 149:test.c        **** //	NTSC_PORT|=_BV(5); NT_NOOP; NT_NOOP;\
+ 150:test.c        **** //	NTSC_PORT&=~_BV(5); NT_NOPS;NT_NOOP;
+ 151:test.c        **** 
+ 152:test.c        **** #define CHROMA_LOOPB USIDR = 0x07;NT_NOOP; NT_NOOP; NT_NOOP; NT_NOOP; NT_NOOP; NT_NOOP; 
+ 153:test.c        **** #define CHROMA_LOOPC USIDR = 0x07;NT_NOOP; NT_NOOP; NT_NOOP; NT_NOOP; NT_NOOP; NT_NOOP; 
+ 154:test.c        **** 
+ 155:test.c        **** 
+ 156:test.c        **** //		NTSC_DDR|=_BV(5);
+ 157:test.c        **** 		NTSC_PORT = BLANK_LEVEL;
+ 332               	.LM30:
+ 333 00ec 8BBB      		out 59-32,r24
+ 158:test.c        **** 
+ 159:test.c        **** 		CHROMA_LOOPB;CHROMA_LOOPB;CHROMA_LOOPB;CHROMA_LOOPB;CHROMA_LOOPB;
+ 335               	.LM31:
+ 336 00ee 87E0      		ldi r24,lo8(7)
+ 337 00f0 8FB9      		out 47-32,r24
+ 338               	/* #APP */
+ 339               	 ;  159 "test.c" 1
+ 340 00f2 0000      		nop
+ 341               	 ;  0 "" 2
+ 342               	 ;  159 "test.c" 1
+ 343 00f4 0000      		nop
+ 344               	 ;  0 "" 2
+ 345               	 ;  159 "test.c" 1
+ 346 00f6 0000      		nop
+ 347               	 ;  0 "" 2
+ 348               	 ;  159 "test.c" 1
+ 349 00f8 0000      		nop
+ 350               	 ;  0 "" 2
+ 351               	 ;  159 "test.c" 1
+ 352 00fa 0000      		nop
+ 353               	 ;  0 "" 2
+ 354               	 ;  159 "test.c" 1
+ 355 00fc 0000      		nop
+ 356               	 ;  0 "" 2
+ 357               	/* #NOAPP */
+ 358 00fe 8FB9      		out 47-32,r24
+ 359               	/* #APP */
+ 360               	 ;  159 "test.c" 1
+ 361 0100 0000      		nop
+ 362               	 ;  0 "" 2
+ 363               	 ;  159 "test.c" 1
+ 364 0102 0000      		nop
+ 365               	 ;  0 "" 2
+ 366               	 ;  159 "test.c" 1
+ 367 0104 0000      		nop
+ 368               	 ;  0 "" 2
+ 369               	 ;  159 "test.c" 1
+ 370 0106 0000      		nop
+ 371               	 ;  0 "" 2
+ 372               	 ;  159 "test.c" 1
+ 373 0108 0000      		nop
+GAS LISTING /tmp/ccJgqQco.s 			page 10
+
+
+ 374               	 ;  0 "" 2
+ 375               	 ;  159 "test.c" 1
+ 376 010a 0000      		nop
+ 377               	 ;  0 "" 2
+ 378               	/* #NOAPP */
+ 379 010c 8FB9      		out 47-32,r24
+ 380               	/* #APP */
+ 381               	 ;  159 "test.c" 1
+ 382 010e 0000      		nop
+ 383               	 ;  0 "" 2
+ 384               	 ;  159 "test.c" 1
+ 385 0110 0000      		nop
+ 386               	 ;  0 "" 2
+ 387               	 ;  159 "test.c" 1
+ 388 0112 0000      		nop
+ 389               	 ;  0 "" 2
+ 390               	 ;  159 "test.c" 1
+ 391 0114 0000      		nop
+ 392               	 ;  0 "" 2
+ 393               	 ;  159 "test.c" 1
+ 394 0116 0000      		nop
+ 395               	 ;  0 "" 2
+ 396               	 ;  159 "test.c" 1
+ 397 0118 0000      		nop
+ 398               	 ;  0 "" 2
+ 399               	/* #NOAPP */
+ 400 011a 8FB9      		out 47-32,r24
+ 401               	/* #APP */
+ 402               	 ;  159 "test.c" 1
+ 403 011c 0000      		nop
+ 404               	 ;  0 "" 2
+ 405               	 ;  159 "test.c" 1
+ 406 011e 0000      		nop
+ 407               	 ;  0 "" 2
+ 408               	 ;  159 "test.c" 1
+ 409 0120 0000      		nop
+ 410               	 ;  0 "" 2
+ 411               	 ;  159 "test.c" 1
+ 412 0122 0000      		nop
+ 413               	 ;  0 "" 2
+ 414               	 ;  159 "test.c" 1
+ 415 0124 0000      		nop
+ 416               	 ;  0 "" 2
+ 417               	 ;  159 "test.c" 1
+ 418 0126 0000      		nop
+ 419               	 ;  0 "" 2
+ 420               	/* #NOAPP */
+ 421 0128 8FB9      		out 47-32,r24
+ 422               	/* #APP */
+ 423               	 ;  159 "test.c" 1
+ 424 012a 0000      		nop
+ 425               	 ;  0 "" 2
+ 426               	 ;  159 "test.c" 1
+ 427 012c 0000      		nop
+ 428               	 ;  0 "" 2
+ 429               	 ;  159 "test.c" 1
+ 430 012e 0000      		nop
+GAS LISTING /tmp/ccJgqQco.s 			page 11
+
+
+ 431               	 ;  0 "" 2
+ 432               	 ;  159 "test.c" 1
+ 433 0130 0000      		nop
+ 434               	 ;  0 "" 2
+ 435               	 ;  159 "test.c" 1
+ 436 0132 0000      		nop
+ 437               	 ;  0 "" 2
+ 438               	 ;  159 "test.c" 1
+ 439 0134 0000      		nop
+ 440               	 ;  0 "" 2
+ 160:test.c        **** 		CHROMA_LOOPB;CHROMA_LOOPB;CHROMA_LOOPB;CHROMA_LOOPB;CHROMA_LOOPB;
+ 442               	.LM32:
+ 443               	/* #NOAPP */
+ 444 0136 8FB9      		out 47-32,r24
+ 445               	/* #APP */
+ 446               	 ;  160 "test.c" 1
+ 447 0138 0000      		nop
+ 448               	 ;  0 "" 2
+ 449               	 ;  160 "test.c" 1
+ 450 013a 0000      		nop
+ 451               	 ;  0 "" 2
+ 452               	 ;  160 "test.c" 1
+ 453 013c 0000      		nop
+ 454               	 ;  0 "" 2
+ 455               	 ;  160 "test.c" 1
+ 456 013e 0000      		nop
+ 457               	 ;  0 "" 2
+ 458               	 ;  160 "test.c" 1
+ 459 0140 0000      		nop
+ 460               	 ;  0 "" 2
+ 461               	 ;  160 "test.c" 1
+ 462 0142 0000      		nop
+ 463               	 ;  0 "" 2
+ 464               	/* #NOAPP */
+ 465 0144 8FB9      		out 47-32,r24
+ 466               	/* #APP */
+ 467               	 ;  160 "test.c" 1
+ 468 0146 0000      		nop
+ 469               	 ;  0 "" 2
+ 470               	 ;  160 "test.c" 1
+ 471 0148 0000      		nop
+ 472               	 ;  0 "" 2
+ 473               	 ;  160 "test.c" 1
+ 474 014a 0000      		nop
+ 475               	 ;  0 "" 2
+ 476               	 ;  160 "test.c" 1
+ 477 014c 0000      		nop
+ 478               	 ;  0 "" 2
+ 479               	 ;  160 "test.c" 1
+ 480 014e 0000      		nop
+ 481               	 ;  0 "" 2
+ 482               	 ;  160 "test.c" 1
+ 483 0150 0000      		nop
+ 484               	 ;  0 "" 2
+ 485               	/* #NOAPP */
+ 486 0152 8FB9      		out 47-32,r24
+ 487               	/* #APP */
+GAS LISTING /tmp/ccJgqQco.s 			page 12
+
+
+ 488               	 ;  160 "test.c" 1
+ 489 0154 0000      		nop
+ 490               	 ;  0 "" 2
+ 491               	 ;  160 "test.c" 1
+ 492 0156 0000      		nop
+ 493               	 ;  0 "" 2
+ 494               	 ;  160 "test.c" 1
+ 495 0158 0000      		nop
+ 496               	 ;  0 "" 2
+ 497               	 ;  160 "test.c" 1
+ 498 015a 0000      		nop
+ 499               	 ;  0 "" 2
+ 500               	 ;  160 "test.c" 1
+ 501 015c 0000      		nop
+ 502               	 ;  0 "" 2
+ 503               	 ;  160 "test.c" 1
+ 504 015e 0000      		nop
+ 505               	 ;  0 "" 2
+ 506               	/* #NOAPP */
+ 507 0160 8FB9      		out 47-32,r24
+ 508               	/* #APP */
+ 509               	 ;  160 "test.c" 1
+ 510 0162 0000      		nop
+ 511               	 ;  0 "" 2
+ 512               	 ;  160 "test.c" 1
+ 513 0164 0000      		nop
+ 514               	 ;  0 "" 2
+ 515               	 ;  160 "test.c" 1
+ 516 0166 0000      		nop
+ 517               	 ;  0 "" 2
+ 518               	 ;  160 "test.c" 1
+ 519 0168 0000      		nop
+ 520               	 ;  0 "" 2
+ 521               	 ;  160 "test.c" 1
+ 522 016a 0000      		nop
+ 523               	 ;  0 "" 2
+ 524               	 ;  160 "test.c" 1
+ 525 016c 0000      		nop
+ 526               	 ;  0 "" 2
+ 527               	/* #NOAPP */
+ 528 016e 8FB9      		out 47-32,r24
+ 529               	/* #APP */
+ 530               	 ;  160 "test.c" 1
+ 531 0170 0000      		nop
+ 532               	 ;  0 "" 2
+ 533               	 ;  160 "test.c" 1
+ 534 0172 0000      		nop
+ 535               	 ;  0 "" 2
+ 536               	 ;  160 "test.c" 1
+ 537 0174 0000      		nop
+ 538               	 ;  0 "" 2
+ 539               	 ;  160 "test.c" 1
+ 540 0176 0000      		nop
+ 541               	 ;  0 "" 2
+ 542               	 ;  160 "test.c" 1
+ 543 0178 0000      		nop
+ 544               	 ;  0 "" 2
+GAS LISTING /tmp/ccJgqQco.s 			page 13
+
+
+ 545               	 ;  160 "test.c" 1
+ 546 017a 0000      		nop
+ 547               	 ;  0 "" 2
+ 161:test.c        **** 		USIDR = 0x00;
+ 549               	.LM33:
+ 550               	/* #NOAPP */
+ 551 017c 1FB8      		out 47-32,__zero_reg__
+ 162:test.c        **** 
+ 163:test.c        **** 		NTSC_PORT = BLANK_LEVEL;
+ 553               	.LM34:
+ 554 017e 80E8      		ldi r24,lo8(-128)
+ 555 0180 8BBB      		out 59-32,r24
+ 556               	.LBB90:
+ 557               	.LBB91:
+ 558               	.LBB92:
+ 559               	.LBB93:
+ 561               	.Ltext5:
+  83:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 563               	.LM35:
+ 564 0182 8AE0      		ldi r24,lo8(10)
+ 565               	/* #APP */
+ 566               	 ;  83 "/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h" 1
+ 567 0184 8A95      		1: dec r24
+ 568 0186 01F4      		brne 1b
+ 569               	 ;  0 "" 2
+ 570               	/* #NOAPP */
+ 571               	.LBE93:
+ 572               	.LBE92:
+ 573               	.LBE91:
+ 574               	.LBE90:
+ 576               	.Ltext6:
+ 164:test.c        **** 
+ 165:test.c        **** 		_delay_us(1.1);
+ 166:test.c        **** 		NTSC_PORT = GREY_LEVEL;
+ 578               	.LM36:
+ 579 0188 9FEF      		ldi r25,lo8(-1)
+ 580 018a 9BBB      		out 59-32,r25
+ 167:test.c        **** 
+ 168:test.c        **** 		if( sline < 100 )
+ 582               	.LM37:
+ 583 018c 8091 0000 		lds r24,sline
+ 584 0190 8436      		cpi r24,lo8(100)
+ 585 0192 00F0      		brlo .+2
+ 586 0194 00C0      		rjmp .L19
+ 169:test.c        **** 		{
+ 170:test.c        **** 			NTSC_PORT = WHITE_LEVEL;
+ 588               	.LM38:
+ 589 0196 9BBB      		out 59-32,r25
+ 590               	.LBB94:
+ 591               	.LBB95:
+ 592               	.LBB96:
+ 593               	.LBB97:
+ 595               	.Ltext7:
+  83:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 597               	.LM39:
+ 598 0198 8FE5      		ldi r24,lo8(95)
+ 599               	/* #APP */
+GAS LISTING /tmp/ccJgqQco.s 			page 14
+
+
+ 600               	 ;  83 "/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h" 1
+ 601 019a 8A95      		1: dec r24
+ 602 019c 01F4      		brne 1b
+ 603               	 ;  0 "" 2
+ 604               	/* #NOAPP */
+ 605               	.LBE97:
+ 606               	.LBE96:
+ 607               	.LBE95:
+ 608               	.LBE94:
+ 610               	.Ltext8:
+ 171:test.c        **** 			_delay_us(10);
+ 172:test.c        **** 			NTSC_PORT = GREY_LEVEL;
+ 612               	.LM40:
+ 613 019e 9BBB      		out 59-32,r25
+ 173:test.c        **** 
+ 174:test.c        **** /*			for( p = 0; p < 8; p++ )
+ 175:test.c        **** 			{
+ 176:test.c        **** 				SPI_DDR|=_BV(SPI_MOSI);
+ 177:test.c        **** 				CHROMA_LOOP; CHROMA_LOOP; CHROMA_LOOP; CHROMA_LOOP; CHROMA_LOOP;
+ 178:test.c        **** 				CHROMA_LOOP; CHROMA_LOOP; CHROMA_LOOP; CHROMA_LOOP; CHROMA_LOOP;
+ 179:test.c        **** 				SPI_DDR&=~_BV(SPI_MOSI);
+ 180:test.c        **** 			}*/
+ 181:test.c        **** 		NOOP; NOOP; NOOP; NOOP; NOOP; NOOP; NOOP;
+ 615               	.LM41:
+ 616               	/* #APP */
+ 617               	 ;  181 "test.c" 1
+ 618 01a0 0000      		nop
+ 619               	 ;  0 "" 2
+ 620               	 ;  181 "test.c" 1
+ 621 01a2 0000      		nop
+ 622               	 ;  0 "" 2
+ 623               	 ;  181 "test.c" 1
+ 624 01a4 0000      		nop
+ 625               	 ;  0 "" 2
+ 626               	 ;  181 "test.c" 1
+ 627 01a6 0000      		nop
+ 628               	 ;  0 "" 2
+ 629               	 ;  181 "test.c" 1
+ 630 01a8 0000      		nop
+ 631               	 ;  0 "" 2
+ 632               	 ;  181 "test.c" 1
+ 633 01aa 0000      		nop
+ 634               	 ;  0 "" 2
+ 635               	 ;  181 "test.c" 1
+ 636 01ac 0000      		nop
+ 637               	 ;  0 "" 2
+ 638               	/* #NOAPP */
+ 639 01ae 95E0      		ldi r25,lo8(5)
+ 182:test.c        **** 		for( s = 5; s; --s )
+ 183:test.c        **** 		{
+ 184:test.c        **** 			CHROMA_LOOPC;CHROMA_LOOPC;CHROMA_LOOPC;CHROMA_LOOPC;CHROMA_LOOPC;
+ 641               	.LM42:
+ 642 01b0 87E0      		ldi r24,lo8(7)
+ 643               	.L20:
+ 644 01b2 8FB9      		out 47-32,r24
+ 645               	/* #APP */
+ 646               	 ;  184 "test.c" 1
+GAS LISTING /tmp/ccJgqQco.s 			page 15
+
+
+ 647 01b4 0000      		nop
+ 648               	 ;  0 "" 2
+ 649               	 ;  184 "test.c" 1
+ 650 01b6 0000      		nop
+ 651               	 ;  0 "" 2
+ 652               	 ;  184 "test.c" 1
+ 653 01b8 0000      		nop
+ 654               	 ;  0 "" 2
+ 655               	 ;  184 "test.c" 1
+ 656 01ba 0000      		nop
+ 657               	 ;  0 "" 2
+ 658               	 ;  184 "test.c" 1
+ 659 01bc 0000      		nop
+ 660               	 ;  0 "" 2
+ 661               	 ;  184 "test.c" 1
+ 662 01be 0000      		nop
+ 663               	 ;  0 "" 2
+ 664               	/* #NOAPP */
+ 665 01c0 8FB9      		out 47-32,r24
+ 666               	/* #APP */
+ 667               	 ;  184 "test.c" 1
+ 668 01c2 0000      		nop
+ 669               	 ;  0 "" 2
+ 670               	 ;  184 "test.c" 1
+ 671 01c4 0000      		nop
+ 672               	 ;  0 "" 2
+ 673               	 ;  184 "test.c" 1
+ 674 01c6 0000      		nop
+ 675               	 ;  0 "" 2
+ 676               	 ;  184 "test.c" 1
+ 677 01c8 0000      		nop
+ 678               	 ;  0 "" 2
+ 679               	 ;  184 "test.c" 1
+ 680 01ca 0000      		nop
+ 681               	 ;  0 "" 2
+ 682               	 ;  184 "test.c" 1
+ 683 01cc 0000      		nop
+ 684               	 ;  0 "" 2
+ 685               	/* #NOAPP */
+ 686 01ce 8FB9      		out 47-32,r24
+ 687               	/* #APP */
+ 688               	 ;  184 "test.c" 1
+ 689 01d0 0000      		nop
+ 690               	 ;  0 "" 2
+ 691               	 ;  184 "test.c" 1
+ 692 01d2 0000      		nop
+ 693               	 ;  0 "" 2
+ 694               	 ;  184 "test.c" 1
+ 695 01d4 0000      		nop
+ 696               	 ;  0 "" 2
+ 697               	 ;  184 "test.c" 1
+ 698 01d6 0000      		nop
+ 699               	 ;  0 "" 2
+ 700               	 ;  184 "test.c" 1
+ 701 01d8 0000      		nop
+ 702               	 ;  0 "" 2
+ 703               	 ;  184 "test.c" 1
+GAS LISTING /tmp/ccJgqQco.s 			page 16
+
+
+ 704 01da 0000      		nop
+ 705               	 ;  0 "" 2
+ 706               	/* #NOAPP */
+ 707 01dc 8FB9      		out 47-32,r24
+ 708               	/* #APP */
+ 709               	 ;  184 "test.c" 1
+ 710 01de 0000      		nop
+ 711               	 ;  0 "" 2
+ 712               	 ;  184 "test.c" 1
+ 713 01e0 0000      		nop
+ 714               	 ;  0 "" 2
+ 715               	 ;  184 "test.c" 1
+ 716 01e2 0000      		nop
+ 717               	 ;  0 "" 2
+ 718               	 ;  184 "test.c" 1
+ 719 01e4 0000      		nop
+ 720               	 ;  0 "" 2
+ 721               	 ;  184 "test.c" 1
+ 722 01e6 0000      		nop
+ 723               	 ;  0 "" 2
+ 724               	 ;  184 "test.c" 1
+ 725 01e8 0000      		nop
+ 726               	 ;  0 "" 2
+ 727               	/* #NOAPP */
+ 728 01ea 8FB9      		out 47-32,r24
+ 729               	/* #APP */
+ 730               	 ;  184 "test.c" 1
+ 731 01ec 0000      		nop
+ 732               	 ;  0 "" 2
+ 733               	 ;  184 "test.c" 1
+ 734 01ee 0000      		nop
+ 735               	 ;  0 "" 2
+ 736               	 ;  184 "test.c" 1
+ 737 01f0 0000      		nop
+ 738               	 ;  0 "" 2
+ 739               	 ;  184 "test.c" 1
+ 740 01f2 0000      		nop
+ 741               	 ;  0 "" 2
+ 742               	 ;  184 "test.c" 1
+ 743 01f4 0000      		nop
+ 744               	 ;  0 "" 2
+ 745               	 ;  184 "test.c" 1
+ 746 01f6 0000      		nop
+ 747               	 ;  0 "" 2
+ 185:test.c        **** 			CHROMA_LOOPC;CHROMA_LOOPC;CHROMA_LOOPC;CHROMA_LOOPC;CHROMA_LOOPC;
+ 749               	.LM43:
+ 750               	/* #NOAPP */
+ 751 01f8 8FB9      		out 47-32,r24
+ 752               	/* #APP */
+ 753               	 ;  185 "test.c" 1
+ 754 01fa 0000      		nop
+ 755               	 ;  0 "" 2
+ 756               	 ;  185 "test.c" 1
+ 757 01fc 0000      		nop
+ 758               	 ;  0 "" 2
+ 759               	 ;  185 "test.c" 1
+ 760 01fe 0000      		nop
+GAS LISTING /tmp/ccJgqQco.s 			page 17
+
+
+ 761               	 ;  0 "" 2
+ 762               	 ;  185 "test.c" 1
+ 763 0200 0000      		nop
+ 764               	 ;  0 "" 2
+ 765               	 ;  185 "test.c" 1
+ 766 0202 0000      		nop
+ 767               	 ;  0 "" 2
+ 768               	 ;  185 "test.c" 1
+ 769 0204 0000      		nop
+ 770               	 ;  0 "" 2
+ 771               	/* #NOAPP */
+ 772 0206 8FB9      		out 47-32,r24
+ 773               	/* #APP */
+ 774               	 ;  185 "test.c" 1
+ 775 0208 0000      		nop
+ 776               	 ;  0 "" 2
+ 777               	 ;  185 "test.c" 1
+ 778 020a 0000      		nop
+ 779               	 ;  0 "" 2
+ 780               	 ;  185 "test.c" 1
+ 781 020c 0000      		nop
+ 782               	 ;  0 "" 2
+ 783               	 ;  185 "test.c" 1
+ 784 020e 0000      		nop
+ 785               	 ;  0 "" 2
+ 786               	 ;  185 "test.c" 1
+ 787 0210 0000      		nop
+ 788               	 ;  0 "" 2
+ 789               	 ;  185 "test.c" 1
+ 790 0212 0000      		nop
+ 791               	 ;  0 "" 2
+ 792               	/* #NOAPP */
+ 793 0214 8FB9      		out 47-32,r24
+ 794               	/* #APP */
+ 795               	 ;  185 "test.c" 1
+ 796 0216 0000      		nop
+ 797               	 ;  0 "" 2
+ 798               	 ;  185 "test.c" 1
+ 799 0218 0000      		nop
+ 800               	 ;  0 "" 2
+ 801               	 ;  185 "test.c" 1
+ 802 021a 0000      		nop
+ 803               	 ;  0 "" 2
+ 804               	 ;  185 "test.c" 1
+ 805 021c 0000      		nop
+ 806               	 ;  0 "" 2
+ 807               	 ;  185 "test.c" 1
+ 808 021e 0000      		nop
+ 809               	 ;  0 "" 2
+ 810               	 ;  185 "test.c" 1
+ 811 0220 0000      		nop
+ 812               	 ;  0 "" 2
+ 813               	/* #NOAPP */
+ 814 0222 8FB9      		out 47-32,r24
+ 815               	/* #APP */
+ 816               	 ;  185 "test.c" 1
+ 817 0224 0000      		nop
+GAS LISTING /tmp/ccJgqQco.s 			page 18
+
+
+ 818               	 ;  0 "" 2
+ 819               	 ;  185 "test.c" 1
+ 820 0226 0000      		nop
+ 821               	 ;  0 "" 2
+ 822               	 ;  185 "test.c" 1
+ 823 0228 0000      		nop
+ 824               	 ;  0 "" 2
+ 825               	 ;  185 "test.c" 1
+ 826 022a 0000      		nop
+ 827               	 ;  0 "" 2
+ 828               	 ;  185 "test.c" 1
+ 829 022c 0000      		nop
+ 830               	 ;  0 "" 2
+ 831               	 ;  185 "test.c" 1
+ 832 022e 0000      		nop
+ 833               	 ;  0 "" 2
+ 834               	/* #NOAPP */
+ 835 0230 8FB9      		out 47-32,r24
+ 836               	/* #APP */
+ 837               	 ;  185 "test.c" 1
+ 838 0232 0000      		nop
+ 839               	 ;  0 "" 2
+ 840               	 ;  185 "test.c" 1
+ 841 0234 0000      		nop
+ 842               	 ;  0 "" 2
+ 843               	 ;  185 "test.c" 1
+ 844 0236 0000      		nop
+ 845               	 ;  0 "" 2
+ 846               	 ;  185 "test.c" 1
+ 847 0238 0000      		nop
+ 848               	 ;  0 "" 2
+ 849               	 ;  185 "test.c" 1
+ 850 023a 0000      		nop
+ 851               	 ;  0 "" 2
+ 852               	 ;  185 "test.c" 1
+ 853 023c 0000      		nop
+ 854               	 ;  0 "" 2
+ 186:test.c        **** 			CHROMA_LOOPC;CHROMA_LOOPC;CHROMA_LOOPC;CHROMA_LOOPC;CHROMA_LOOPC;
+ 856               	.LM44:
+ 857               	/* #NOAPP */
+ 858 023e 8FB9      		out 47-32,r24
+ 859               	/* #APP */
+ 860               	 ;  186 "test.c" 1
+ 861 0240 0000      		nop
+ 862               	 ;  0 "" 2
+ 863               	 ;  186 "test.c" 1
+ 864 0242 0000      		nop
+ 865               	 ;  0 "" 2
+ 866               	 ;  186 "test.c" 1
+ 867 0244 0000      		nop
+ 868               	 ;  0 "" 2
+ 869               	 ;  186 "test.c" 1
+ 870 0246 0000      		nop
+ 871               	 ;  0 "" 2
+ 872               	 ;  186 "test.c" 1
+ 873 0248 0000      		nop
+ 874               	 ;  0 "" 2
+GAS LISTING /tmp/ccJgqQco.s 			page 19
+
+
+ 875               	 ;  186 "test.c" 1
+ 876 024a 0000      		nop
+ 877               	 ;  0 "" 2
+ 878               	/* #NOAPP */
+ 879 024c 8FB9      		out 47-32,r24
+ 880               	/* #APP */
+ 881               	 ;  186 "test.c" 1
+ 882 024e 0000      		nop
+ 883               	 ;  0 "" 2
+ 884               	 ;  186 "test.c" 1
+ 885 0250 0000      		nop
+ 886               	 ;  0 "" 2
+ 887               	 ;  186 "test.c" 1
+ 888 0252 0000      		nop
+ 889               	 ;  0 "" 2
+ 890               	 ;  186 "test.c" 1
+ 891 0254 0000      		nop
+ 892               	 ;  0 "" 2
+ 893               	 ;  186 "test.c" 1
+ 894 0256 0000      		nop
+ 895               	 ;  0 "" 2
+ 896               	 ;  186 "test.c" 1
+ 897 0258 0000      		nop
+ 898               	 ;  0 "" 2
+ 899               	/* #NOAPP */
+ 900 025a 8FB9      		out 47-32,r24
+ 901               	/* #APP */
+ 902               	 ;  186 "test.c" 1
+ 903 025c 0000      		nop
+ 904               	 ;  0 "" 2
+ 905               	 ;  186 "test.c" 1
+ 906 025e 0000      		nop
+ 907               	 ;  0 "" 2
+ 908               	 ;  186 "test.c" 1
+ 909 0260 0000      		nop
+ 910               	 ;  0 "" 2
+ 911               	 ;  186 "test.c" 1
+ 912 0262 0000      		nop
+ 913               	 ;  0 "" 2
+ 914               	 ;  186 "test.c" 1
+ 915 0264 0000      		nop
+ 916               	 ;  0 "" 2
+ 917               	 ;  186 "test.c" 1
+ 918 0266 0000      		nop
+ 919               	 ;  0 "" 2
+ 920               	/* #NOAPP */
+ 921 0268 8FB9      		out 47-32,r24
+ 922               	/* #APP */
+ 923               	 ;  186 "test.c" 1
+ 924 026a 0000      		nop
+ 925               	 ;  0 "" 2
+ 926               	 ;  186 "test.c" 1
+ 927 026c 0000      		nop
+ 928               	 ;  0 "" 2
+ 929               	 ;  186 "test.c" 1
+ 930 026e 0000      		nop
+ 931               	 ;  0 "" 2
+GAS LISTING /tmp/ccJgqQco.s 			page 20
+
+
+ 932               	 ;  186 "test.c" 1
+ 933 0270 0000      		nop
+ 934               	 ;  0 "" 2
+ 935               	 ;  186 "test.c" 1
+ 936 0272 0000      		nop
+ 937               	 ;  0 "" 2
+ 938               	 ;  186 "test.c" 1
+ 939 0274 0000      		nop
+ 940               	 ;  0 "" 2
+ 941               	/* #NOAPP */
+ 942 0276 8FB9      		out 47-32,r24
+ 943               	/* #APP */
+ 944               	 ;  186 "test.c" 1
+ 945 0278 0000      		nop
+ 946               	 ;  0 "" 2
+ 947               	 ;  186 "test.c" 1
+ 948 027a 0000      		nop
+ 949               	 ;  0 "" 2
+ 950               	 ;  186 "test.c" 1
+ 951 027c 0000      		nop
+ 952               	 ;  0 "" 2
+ 953               	 ;  186 "test.c" 1
+ 954 027e 0000      		nop
+ 955               	 ;  0 "" 2
+ 956               	 ;  186 "test.c" 1
+ 957 0280 0000      		nop
+ 958               	 ;  0 "" 2
+ 959               	 ;  186 "test.c" 1
+ 960 0282 0000      		nop
+ 961               	 ;  0 "" 2
+ 182:test.c        **** 		for( s = 5; s; --s )
+ 963               	.LM45:
+ 964               	/* #NOAPP */
+ 965 0284 9150      		subi r25,lo8(-(-1))
+ 966 0286 01F0      		breq .+2
+ 967 0288 00C0      		rjmp .L20
+ 187:test.c        **** 		}
+ 188:test.c        **** 		USIDR = 0x00;
+ 969               	.LM46:
+ 970 028a 1FB8      		out 47-32,__zero_reg__
+ 189:test.c        **** 
+ 190:test.c        **** 
+ 191:test.c        **** 
+ 192:test.c        **** //			SPI_PORT&=~_BV(SPI_MOSI); NT_NOPS
+ 193:test.c        **** 			NTSC_PORT = BLACK_LEVEL;
+ 972               	.LM47:
+ 973 028c 81E8      		ldi r24,lo8(-127)
+ 974               	.L25:
+ 975 028e 8BBB      		out 59-32,r24
+ 976 0290 00C0      		rjmp .L22
+ 977               	.L19:
+ 194:test.c        **** 		}
+ 195:test.c        **** 		else
+ 196:test.c        **** 		{
+ 197:test.c        **** 			NTSC_PORT = WHITE_LEVEL;
+ 979               	.LM48:
+ 980 0292 9BBB      		out 59-32,r25
+GAS LISTING /tmp/ccJgqQco.s 			page 21
+
+
+ 981               	.LBB98:
+ 982               	.LBB99:
+ 983               	.LBB100:
+ 984               	.LBB101:
+ 986               	.Ltext9:
+  83:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 988               	.LM49:
+ 989 0294 8FE5      		ldi r24,lo8(95)
+ 990               	/* #APP */
+ 991               	 ;  83 "/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h" 1
+ 992 0296 8A95      		1: dec r24
+ 993 0298 01F4      		brne 1b
+ 994               	 ;  0 "" 2
+ 995               	/* #NOAPP */
+ 996 029a 90E0      		ldi r25,lo8(0)
+ 997               	.LBE101:
+ 998               	.LBE100:
+ 999               	.LBE99:
+ 1000               	.LBE98:
+ 1002               	.Ltext10:
+ 198:test.c        **** 			_delay_us(10);
+ 199:test.c        **** 			for( s = 0; s < 9; s++ )
+ 200:test.c        **** 			{
+ 201:test.c        **** 				NTSC_PORT = GREY_LEVEL;
+ 1004               	.LM50:
+ 1005 029c 4FEF      		ldi r20,lo8(-1)
+ 1006               	.LBB102:
+ 1007               	.LBB103:
+ 1008               	.LBB104:
+ 1009               	.LBB105:
+ 1011               	.Ltext11:
+  83:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 1013               	.LM51:
+ 1014 029e 23E1      		ldi r18,lo8(19)
+ 1015               	.LBE105:
+ 1016               	.LBE104:
+ 1017               	.LBE103:
+ 1018               	.LBE102:
+ 1020               	.Ltext12:
+ 202:test.c        **** 				_delay_us(2);
+ 203:test.c        **** 				NTSC_PORT = BLACK_LEVEL;
+ 1022               	.LM52:
+ 1023 02a0 31E8      		ldi r19,lo8(-127)
+ 1024               	.L21:
+ 201:test.c        **** 				NTSC_PORT = GREY_LEVEL;
+ 1026               	.LM53:
+ 1027 02a2 4BBB      		out 59-32,r20
+ 1028               	.LBB109:
+ 1029               	.LBB108:
+ 1030               	.LBB107:
+ 1031               	.LBB106:
+ 1033               	.Ltext13:
+  83:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 1035               	.LM54:
+ 1036 02a4 822F      		mov r24,r18
+ 1037               	/* #APP */
+ 1038               	 ;  83 "/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h" 1
+GAS LISTING /tmp/ccJgqQco.s 			page 22
+
+
+ 1039 02a6 8A95      		1: dec r24
+ 1040 02a8 01F4      		brne 1b
+ 1041               	 ;  0 "" 2
+ 1042               	/* #NOAPP */
+ 1043               	.LBE106:
+ 1044               	.LBE107:
+ 1045               	.LBE108:
+ 1046               	.LBE109:
+ 1048               	.Ltext14:
+ 1050               	.LM55:
+ 1051 02aa 3BBB      		out 59-32,r19
+ 1052               	.LBB110:
+ 1053               	.LBB111:
+ 1054               	.LBB112:
+ 1055               	.LBB113:
+ 1057               	.Ltext15:
+  83:/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 1059               	.LM56:
+ 1060 02ac 822F      		mov r24,r18
+ 1061               	/* #APP */
+ 1062               	 ;  83 "/usr/lib/gcc/avr/4.3.5/../../../avr/include/util/delay_basic.h" 1
+ 1063 02ae 8A95      		1: dec r24
+ 1064 02b0 01F4      		brne 1b
+ 1065               	 ;  0 "" 2
+ 1066               	/* #NOAPP */
+ 1067               	.LBE113:
+ 1068               	.LBE112:
+ 1069               	.LBE111:
+ 1070               	.LBE110:
+ 1072               	.Ltext16:
+ 199:test.c        **** 			for( s = 0; s < 9; s++ )
+ 1074               	.LM57:
+ 1075 02b2 9F5F      		subi r25,lo8(-(1))
+ 1076 02b4 9930      		cpi r25,lo8(9)
+ 1077 02b6 01F4      		brne .L21
+ 1078               	.L22:
+ 1079               	/* epilogue start */
+ 204:test.c        **** 				_delay_us(2);
+ 205:test.c        **** 			}
+ 206:test.c        **** 			
+ 207:test.c        **** 		}
+ 208:test.c        **** 	}
+ 209:test.c        **** }
+ 1081               	.LM58:
+ 1082 02b8 9F91      		pop r25
+ 1083 02ba 8F91      		pop r24
+ 1084 02bc 4F91      		pop r20
+ 1085 02be 3F91      		pop r19
+ 1086 02c0 2F91      		pop r18
+ 1087 02c2 0F90      		pop r0
+ 1088 02c4 0FBE      		out __SREG__,r0
+ 1089 02c6 0F90      		pop r0
+ 1090 02c8 1F90      		pop __zero_reg__
+ 1091 02ca 1895      		reti
+ 1096               	.Lscope3:
+ 1098               		.stabd	78,0,0
+ 1100               	.global	SetupNTSC
+GAS LISTING /tmp/ccJgqQco.s 			page 23
+
+
+ 1102               	SetupNTSC:
+ 1103               		.stabd	46,0,0
+ 210:test.c        **** 
+ 211:test.c        **** 
+ 212:test.c        **** 
+ 213:test.c        **** 
+ 214:test.c        **** void SetupNTSC()
+ 215:test.c        **** {
+ 1105               	.LM59:
+ 1106               	.LFBB4:
+ 1107               	/* prologue: function */
+ 1108               	/* frame size = 0 */
+ 216:test.c        **** 	NTSC_DDR = 0xAF;
+ 1110               	.LM60:
+ 1111 02cc 8FEA      		ldi r24,lo8(-81)
+ 1112 02ce 8ABB      		out 58-32,r24
+ 217:test.c        **** 
+ 218:test.c        **** 	//handle SPI master, etc.
+ 219:test.c        **** //	SPI_DDR &= ~(_BV(SPI_SCK)|_BV(SPI_MOSI));
+ 220:test.c        **** //	SPI_DDR |= _BV(SPI_MISO);
+ 221:test.c        **** //	SPCR = _BV(SPE) ;//| _BV(MSTR) | _BV(CPHA);
+ 222:test.c        **** //	SPSR = _BV(SPI2X);
+ 223:test.c        **** 	
+ 224:test.c        **** 	//Write to SPDR
+ 225:test.c        **** 
+ 226:test.c        **** 	//Timers
+ 227:test.c        **** 	TCNT1 = 0;
+ 1114               	.LM61:
+ 1115 02d0 1DBC      		out (76)+1-32,__zero_reg__
+ 1116 02d2 1CBC      		out 76-32,__zero_reg__
+ 228:test.c        **** 	OCR1A = 1832;	//Setup line timer 1 (note this is for each line)
+ 1118               	.LM62:
+ 1119 02d4 88E2      		ldi r24,lo8(1832)
+ 1120 02d6 97E0      		ldi r25,hi8(1832)
+ 1121 02d8 9BBD      		out (74)+1-32,r25
+ 1122 02da 8ABD      		out 74-32,r24
+ 229:test.c        **** 	OCR1B = 500;
+ 1124               	.LM63:
+ 1125 02dc 84EF      		ldi r24,lo8(500)
+ 1126 02de 91E0      		ldi r25,hi8(500)
+ 1127 02e0 99BD      		out (72)+1-32,r25
+ 1128 02e2 88BD      		out 72-32,r24
+ 230:test.c        **** 	TCCR1A = 0;	//No PWMs.
+ 1130               	.LM64:
+ 1131 02e4 1FBC      		out 79-32,__zero_reg__
+ 231:test.c        **** 	TCCR1B = _BV(CS10) | _BV(WGM12);  // no prescaling
+ 1133               	.LM65:
+ 1134 02e6 89E0      		ldi r24,lo8(9)
+ 1135 02e8 8EBD      		out 78-32,r24
+ 232:test.c        **** 	TIMSK1 = _BV(OCIE1A) | _BV(OCIE1B); //Enable overflow mark
+ 1137               	.LM66:
+ 1138 02ea 86E0      		ldi r24,lo8(6)
+ 1139 02ec 8CB9      		out 44-32,r24
+ 1140               	/* epilogue start */
+ 233:test.c        **** 
+ 234:test.c        **** 	//Debug value
+ 235:test.c        **** //	PORTC = 0x0F;
+GAS LISTING /tmp/ccJgqQco.s 			page 24
+
+
+ 236:test.c        **** 
+ 237:test.c        **** }
+ 1142               	.LM67:
+ 1143 02ee 0895      		ret
+ 1145               	.Lscope4:
+ 1147               		.stabd	78,0,0
+ 1149               	.global	main
+ 1151               	main:
+ 1152               		.stabd	46,0,0
+  29:test.c        **** {
+ 1154               	.LM68:
+ 1155               	.LFBB5:
+ 1156               	/* prologue: function */
+ 1157               	/* frame size = 0 */
+  30:test.c        **** 	cli();
+ 1159               	.LM69:
+ 1160               	/* #APP */
+ 1161               	 ;  30 "test.c" 1
+ 1162 02f0 F894      		cli
+ 1163               	 ;  0 "" 2
+  32:test.c        **** 	PORTA = 0x00;
+ 1165               	.LM70:
+ 1166               	/* #NOAPP */
+ 1167 02f2 1BBA      		out 59-32,__zero_reg__
+  33:test.c        **** 	PORTB = 0x00;
+ 1169               	.LM71:
+ 1170 02f4 18BA      		out 56-32,__zero_reg__
+  34:test.c        **** 	DDRA = 0xAF;
+ 1172               	.LM72:
+ 1173 02f6 8FEA      		ldi r24,lo8(-81)
+ 1174 02f8 8ABB      		out 58-32,r24
+  35:test.c        **** 	DDRB = 0xFF;
+ 1176               	.LM73:
+ 1177 02fa 8FEF      		ldi r24,lo8(-1)
+ 1178 02fc 87BB      		out 55-32,r24
+ 1179               	.LBB114:
+ 1180               	.LBB115:
+  24:test.c        **** 	CLKPR = 0x80;	/*Setup CLKPCE to be receptive*/
+ 1182               	.LM74:
+ 1183 02fe 80E8      		ldi r24,lo8(-128)
+ 1184 0300 86BD      		out 70-32,r24
+  25:test.c        **** 	CLKPR = 0x00;	/*No scalar*/
+ 1186               	.LM75:
+ 1187 0302 16BC      		out 70-32,__zero_reg__
+ 1188               	.LBE115:
+ 1189               	.LBE114:
+  41:test.c        **** 	USICR = _BV(USIWM0) | _BV(USICS0);
+ 1191               	.LM76:
+ 1192 0304 84E1      		ldi r24,lo8(20)
+ 1193 0306 8DB9      		out 45-32,r24
+  42:test.c        **** 	TCCR0A = _BV(WGM01);
+ 1195               	.LM77:
+ 1196 0308 82E0      		ldi r24,lo8(2)
+ 1197 030a 80BF      		out 80-32,r24
+  43:test.c        **** 	TCCR0B = _BV(CS00);
+ 1199               	.LM78:
+ 1200 030c 81E0      		ldi r24,lo8(1)
+GAS LISTING /tmp/ccJgqQco.s 			page 25
+
+
+ 1201 030e 83BF      		out 83-32,r24
+  44:test.c        **** 	OCR0A = 0;
+ 1203               	.LM79:
+ 1204 0310 16BE      		out 86-32,__zero_reg__
+  46:test.c        **** 	SetupNTSC();
+ 1206               	.LM80:
+ 1207 0312 00D0      		rcall SetupNTSC
+  47:test.c        **** 	sei();
+ 1209               	.LM81:
+ 1210               	/* #APP */
+ 1211               	 ;  47 "test.c" 1
+ 1212 0314 7894      		sei
+ 1213               	 ;  0 "" 2
+ 1214               	/* #NOAPP */
+ 1215               	.L29:
+  51:test.c        **** 			sleep_cpu();
+ 1217               	.LM82:
+ 1218               	/* #APP */
+ 1219               	 ;  51 "test.c" 1
+ 1220 0316 8895      		sleep
+ 1221               		
+ 1222               	 ;  0 "" 2
+ 1223               	/* #NOAPP */
+ 1224 0318 00C0      		rjmp .L29
+ 1226               	.Lscope5:
+ 1228               		.stabd	78,0,0
+ 1229               		.comm cline,1,1
+ 1230               		.comm sline,1,1
+ 1234               	.Letext0:
+ 1235               	.global __do_clear_bss
+GAS LISTING /tmp/ccJgqQco.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 test.c
+     /tmp/ccJgqQco.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccJgqQco.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccJgqQco.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccJgqQco.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccJgqQco.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccJgqQco.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccJgqQco.s:89     .text:00000000 delay_ms
+     /tmp/ccJgqQco.s:153    .text:00000028 __vector_6
+                            *COM*:00000001 cline
+                            *COM*:00000001 sline
+     /tmp/ccJgqQco.s:279    .text:000000c2 __vector_7
+     /tmp/ccJgqQco.s:1102   .text:000002cc SetupNTSC
+     /tmp/ccJgqQco.s:1151   .text:000002f0 main
+
+UNDEFINED SYMBOLS
+__do_clear_bss
